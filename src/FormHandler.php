@@ -42,9 +42,6 @@ class FormHandler
             $this->database->insert("users", $data["sanitized"]);
 
             $_SESSION['success'] = true;
-
-            header('Location: /');
-            exit;
         }
 
         echo $this->view([]);
