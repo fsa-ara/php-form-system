@@ -1,7 +1,7 @@
 <?php if (!empty($_SESSION['success'])): ?>
     <div class="row justify-content-center position-absolute end-0 start-0 z-1 mt-3">
         <div id="form-alert" class="alert alert-success row justify-content-center col-sm-auto m-0 fade show">
-            Form submitted successfully!
+            Form submitted successfully! Redirecting...
         </div>
     </div>
     <?php unset($_SESSION['success']); ?>
@@ -13,7 +13,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="mb-5">Contact form</h2>
-                    <form action="/" method="POST">
+                    <form action="/form" method="POST">
                         <div class="form-floating mb-3">
                             <input id="firstname" class="form-control <?= isset($data['errors']['firstname']) ? 'is-invalid' : '' ?>" type="text" name="firstname" placeholder="Firstname" value="<?= isset($data['sanitized']['firstname']) ?>" required>
                             <label for="firstname">Firstname</label>
@@ -44,13 +44,19 @@
 </div>
 
 <script>
-    setTimeout(() => {
-        const alertElement = document.getElementById('form-alert');
+    const alertElement = document.getElementById('form-alert');
 
+    setTimeout(() => {
         if (alertElement) {
             const bsAlert = new bootstrap.Alert(alertElement);
 
             bsAlert.close();
         }
-    }, 3000);
+    }, 2000);
+
+    setTimeout(() => {
+        if (alertElement) {
+            window.location.href = "/";
+        }
+    }, 4000);
 </script>
