@@ -4,10 +4,12 @@ namespace Src;
 
 class FormHandler
 {
+    private Database $database;
     private FormValidator $formValidator;
 
     public function __construct()
     {
+        $this->database = new Database();
         $this->formValidator = new FormValidator();
     }
 
@@ -27,13 +29,24 @@ class FormHandler
 
     public function render(): void
     {
-        $req = $this->getPost();
-        $data = $this->formValidator->checking($req);
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $req = $this->getPost();
+            $data = $this->formValidator->checking($req);
 
-        if (isset($data["errors"])) {
-            // echo "erreur défini";
+            if (isset($data["errors"])) {
+                echo $this->view($data);
+
+                return;
+            }
+
+            $this->database->insert("users", $data["sanitized"]);
+
+            $_SESSION['success'] = true;
+
+            header('Location: /');
+            exit;
         }
 
-        echo $this->view($data);
+        echo $this->view([]);
     }
 }
