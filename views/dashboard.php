@@ -23,7 +23,7 @@
                                 <?= $user["created_at"] ?>
                             </small>
                             <div class="d-grid gap-2">
-                                <a href="/edit.php?id=<?= $user["id"] ?>" class="btn btn-warning btn-sm">
+                                <a href="/edit?id=<?= $user["id"] ?>" class="btn btn-warning btn-sm">
                                     Edit
                                 </a>
                                 <a href="/delete.php?id=<?= $user["id"] ?>" class="btn btn-danger btn-sm">
@@ -58,7 +58,7 @@
                                 <td><code><?= $user['email'] ?></code></td>
                                 <td class="text-nowrap"><?= $user['created_at'] ?></td>
                                 <td class="text-nowrap text-end">
-                                    <a href="/edit.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning">
+                                    <a href="/edit?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning">
                                         Edit
                                     </a>
                                     <a href="/delete.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger">
