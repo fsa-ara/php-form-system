@@ -2,6 +2,7 @@
 
 use Core\Autoloader;
 use Src\DashboardHandler;
+use Src\DeleteHandler;
 use Src\EditHandler;
 use Src\FormHandler;
 
@@ -43,6 +44,11 @@ session_start();
     if ($uri === "/edit") {
         $edit = new EditHandler();
         $edit->render();
+    }
+
+    if ($uri === "/delete") {
+        $delete = new DeleteHandler();
+        $delete->exec();
     }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
