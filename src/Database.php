@@ -37,6 +37,30 @@ class Database
         return $stmt->execute($data);
     }
 
+    public function update(string $table, array $data, int $id): bool
+    {
+        $fields = array_keys($data);
+        $set = implode(", ", array_map(fn($field) => "$field = :$field", $fields));
+
+        $req = "UPDATE $table SET $set WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($req);
+
+        $data["id"] = $id;
+
+        return $stmt->execute($data);
+    }
+
+    public function get(string $table, int $id): array
+    {
+        $req = "SELECT * FROM $table WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($req);
+        $stmt->execute(["id" => $id]);
+
+        return $stmt->fetch();
+    }
+
     public function getAll(string $table): array
     {
         $req = "SELECT * FROM $table ORDER BY id DESC";
