@@ -1,6 +1,7 @@
 <?php
 
 use Core\Autoloader;
+use Src\DashboardHandler;
 use Src\FormHandler;
 
 require_once __DIR__ . "/../core/Autoloader.php";
@@ -22,10 +23,19 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 </head>
 
-<body class="bg-light position-relative">
+<body class="bg-light">
     <?php
-    $form = new FormHandler();
-    $form->render();
+    require_once __DIR__ . "/../views/header.php";
+
+    if ($_SERVER["REQUEST_URI"] === "/") {
+        $dashboard = new DashboardHandler();
+        $dashboard->render();
+    }
+
+    if ($_SERVER["REQUEST_URI"] === "/form") {
+        $form = new FormHandler();
+        $form->render();
+    }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
