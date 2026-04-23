@@ -41,7 +41,7 @@ class FormHandler
 
             $this->database->insert("users", $data["sanitized"]);
 
-            $_SESSION['success'] = true;
+            $_SESSION["success"] = true;
         }
 
         echo $this->view([]);

@@ -42,7 +42,7 @@ class FormValidator
                 continue;
             }
 
-            if ($field === 'email' && !$this->isEmail($entries[$field])) {
+            if ($field === "email" && !$this->isEmail($entries[$field])) {
                 $this->data["errors"][$field] = "Invalid email format";
             }
         }
