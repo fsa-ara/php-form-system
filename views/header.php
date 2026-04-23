@@ -3,8 +3,5 @@
         <li class="nav-item">
             <a class="nav-link text-white" href="/">Dashboard</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="form">Contact form</a>
-        </li>
     </ul>
 </header>
