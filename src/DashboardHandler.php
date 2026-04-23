@@ -22,7 +22,7 @@ class DashboardHandler
 
     public function render(): void
     {
-        $data = $this->database->findAll("users");
+        $data = $this->database->getAll("users");
 
         echo $this->view($data);
     }

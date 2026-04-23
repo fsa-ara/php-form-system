@@ -30,10 +30,19 @@ class Database
         $fields = implode(", ", $columns);
         $placeholders = implode(", ", array_map(fn($field) => ":" . $field, $columns));
 
-        $query = "INSERT INTO $table ($fields) VALUES ($placeholders)";
+        $req = "INSERT INTO $table ($fields) VALUES ($placeholders)";
 
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $this->pdo->prepare($req);
 
         return $stmt->execute($data);
+    }
+
+    public function getAll(string $table): array
+    {
+        $req = "SELECT * FROM $table ORDER BY id DESC";
+
+        $stmt = $this->pdo->query($req);
+
+        return $stmt->fetchAll();
     }
 }
