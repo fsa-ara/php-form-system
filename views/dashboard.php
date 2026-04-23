@@ -26,9 +26,12 @@
                                 <a href="/edit?id=<?= $user["id"] ?>" class="btn btn-warning btn-sm">
                                     Edit
                                 </a>
-                                <a href="/delete.php?id=<?= $user["id"] ?>" class="btn btn-danger btn-sm">
-                                    Delete
-                                </a>
+                                <form method="POST" action="/delete">
+                                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                    <button class="btn btn-danger btn-sm w-100" type="submit" onclick="return confirm('Delete this user?')">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -61,9 +64,12 @@
                                     <a href="/edit?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning">
                                         Edit
                                     </a>
-                                    <a href="/delete.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger">
-                                        Delete
-                                    </a>
+                                    <form method="POST" action="/delete" class="d-inline">
+                                        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                        <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Delete this user?')">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
