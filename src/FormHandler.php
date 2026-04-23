@@ -39,7 +39,11 @@ class FormHandler
                 return;
             }
 
-            $this->database->insert("users", $data["sanitized"]);
+            if ($req["id"]) {
+                $this->database->update("users", $data["sanitized"], $req["id"]);
+            } else {
+                $this->database->insert("users", $data["sanitized"]);
+            }
 
             $_SESSION["success"] = true;
         }
