@@ -51,6 +51,15 @@ class Database
         return $stmt->execute($data);
     }
 
+    public function delete(string $table, int $id): bool
+    {
+        $req = "DELETE FROM $table WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($req);
+
+        return $stmt->execute(['id' => $id]);
+    }
+
     public function get(string $table, int $id): array
     {
         $req = "SELECT * FROM $table WHERE id = :id";
