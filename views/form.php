@@ -8,34 +8,39 @@
 <?php endif; ?>
 
 <div class="container py-5 vh-100">
-    <div class="row h-100 pt-5">
+    <div class="row h-100 justify-content-center pt-5">
         <div class="col-sm-auto">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="mb-5">Contact form</h2>
+                    <h2 class="mb-5">
+                        <?= isset($data["sanitized"]["id"]) ? "Edit user" : "Contact form" ?>
+                    </h2>
                     <form action="/form" method="POST">
+                        <input type="hidden" name="id" value="<?= $data["sanitized"]["id"] ?? '' ?>">
                         <div class="form-floating mb-3">
-                            <input id="firstname" class="form-control <?= isset($data["errors"]["firstname"]) ? "is-invalid" : "" ?>" type="text" name="firstname" placeholder="Firstname" value="<?= isset($data["sanitized"]["firstname"]) ?>" required>
+                            <input id="firstname" class="form-control <?= isset($data["errors"]["firstname"]) ? "is-invalid" : "" ?>" type="text" name="firstname" placeholder="Firstname" value="<?= $data["sanitized"]["firstname"] ?? "" ?>" required>
                             <label for="firstname">Firstname</label>
                             <?php if (isset($data["errors"]["firstname"])): ?>
                                 <p class="text-danger"><?= $data["errors"]["firstname"] ?></p>
                             <?php endif; ?>
                         </div>
                         <div class="form-floating mb-3">
-                            <input id="lastname" class="form-control <?= isset($data["errors"]["lastname"]) ? "is-invalid" : "" ?>" type="text" name="lastname" placeholder="lastname" value="<?= isset($data["sanitized"]["lastname"]) ?>" required>
+                            <input id="lastname" class="form-control <?= isset($data["errors"]["lastname"]) ? "is-invalid" : "" ?>" type="text" name="lastname" placeholder="lastname" value="<?= $data["sanitized"]["lastname"] ?? "" ?>" required>
                             <label for="lastname">Lastname</label>
                             <?php if (isset($data["errors"]["lastname"])): ?>
                                 <p class="text-danger"><?= $data["errors"]["lastname"] ?></p>
                             <?php endif; ?>
                         </div>
                         <div class="form-floating">
-                            <input id="email" class="form-control <?= isset($data["errors"]["email"]) ? "is-invalid" : "" ?>" type="email" name="email" placeholder="email@example.com" value="<?= isset($data["sanitized"]["email"]) ?>" required>
+                            <input id="email" class="form-control <?= isset($data["errors"]["email"]) ? "is-invalid" : "" ?>" type="email" name="email" placeholder="email@example.com" value="<?= $data["sanitized"]["email"] ?? "" ?>" required>
                             <label for="email">Email</label>
                             <?php if (isset($data["errors"]["email"])): ?>
                                 <p class="text-danger"><?= $data["errors"]["email"] ?></p>
                             <?php endif; ?>
                         </div>
-                        <button class="btn btn-primary mt-5 w-100" type="submit">Submit</button>
+                        <button class="btn btn-primary mt-5 w-100" type="submit">
+                            <?= isset($data["sanitized"]["id"]) ? "Update" : "Submit" ?>
+                        </button>
                     </form>
                 </div>
             </div>
