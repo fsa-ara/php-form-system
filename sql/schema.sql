@@ -1,4 +1,9 @@
 CREATE DATABASE IF NOT EXISTS form;
+
+CREATE USER 'dev'@'localhost' IDENTIFIED BY 'pwd';
+GRANT ALL PRIVILEGES ON form.* TO 'dev'@'localhost';
+FLUSH PRIVILEGES;
+
 USE form;
 
 CREATE TABLE IF NOT EXISTS users (
