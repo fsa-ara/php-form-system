@@ -5,6 +5,7 @@ use Src\DashboardHandler;
 use Src\DeleteHandler;
 use Src\EditHandler;
 use Src\FormHandler;
+use Src\TruncateHandler;
 
 require_once __DIR__ . "/../core/Autoloader.php";
 
@@ -49,6 +50,11 @@ session_start();
     if ($uri === "/delete") {
         $delete = new DeleteHandler();
         $delete->exec();
+    }
+
+    if ($uri === "/truncate") {
+        $drop = new TruncateHandler();
+        $drop->exec();
     }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
