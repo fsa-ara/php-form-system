@@ -9,7 +9,7 @@ It focuses on validation, sanitization, and a clean architecture inspired by MVC
 - [Status](#status)
 - [Features](#features)
 - [Quick start](#quick-start)
-- [Flowcharts](docs/index.md)
+- [CRUD Flowcharts](docs/crud-flow.md)
 
 ## Purpose
 
