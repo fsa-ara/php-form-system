@@ -1,7 +1,15 @@
 <div class="container pt-5">
     <div class="d-flex justify-content-between align-items-center pt-5">
         <h2 class="m-0">Users dashboard</h2>
-        <a href="/form" class="btn btn-primary">+ Add user</a>
+        <div class="d-flex gap-2">
+            <a href="/form" class="btn btn-primary">+ Add user</a>
+            <form method="POST" action="/truncate">
+                <input type="hidden" name="confirm" value="yes">
+                <button class="btn btn-outline-danger" type="submit" onclick="return showConfirm('Really delete ALL users?')">
+                    Reset table
+                </button>
+            </form>
+        </div>
     </div>
     <?php if (!empty($data)): ?>
         <!-- MOBILE -->
@@ -17,7 +25,7 @@
                                 <span class="badge bg-secondary lh-base">#<?= $user["id"] ?></span>
                             </div>
                             <p class="mb-1">
-                                <?= $user["email"] ?>
+                                <code><?= $user['email'] ?></code>
                             </p>
                             <small class="text-muted d-block mb-5">
                                 <?= $user["created_at"] ?>
@@ -28,7 +36,7 @@
                                 </a>
                                 <form method="POST" action="/delete">
                                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                                    <button class="btn btn-danger btn-sm w-100" type="submit" onclick="return confirm('Delete this user?')">
+                                    <button class="btn btn-danger btn-sm w-100" type="submit" onclick="return showConfirm('Delete this user?')">
                                         Delete
                                     </button>
                                 </form>
@@ -66,7 +74,7 @@
                                     </a>
                                     <form method="POST" action="/delete" class="d-inline">
                                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                                        <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Delete this user?')">
+                                        <button class="btn btn-danger btn-sm" type="submit" onclick="return showConfirm('Delete this user?')">
                                             Delete
                                         </button>
                                     </form>
@@ -79,3 +87,10 @@
         </div>
     <?php endif; ?>
 </div>
+
+
+<script>
+    function showConfirm(message) {
+        return window.confirm(message);
+    }
+</script>
