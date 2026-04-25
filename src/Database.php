@@ -78,4 +78,11 @@ class Database
 
         return $stmt->fetchAll();
     }
+
+    public function truncate(string $table): void
+    {
+        $req = "TRUNCATE TABLE $table";
+
+        $this->pdo->exec($req);
+    }
 }
